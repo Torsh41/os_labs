@@ -1,40 +1,88 @@
 ﻿using System;
 using System.IO;
-using System.Drawing;
 using System.Windows.Forms;
-using System.CodeDom.Compiler;
 
 namespace os_lab_2
 {
     public partial class Form1 : Form
     {
-        private DiskData disk_data;
-
-        //public DiskData disk_data;
 
         public Form1()
         {
-            // init disk_data class
-            disk_data = new DiskData();
-
             InitializeComponent();
-            // other init
-            string[] temp_string = this.disk_data.get_disk_names(); // get array of disk names
-            this.comboBox1.Items.AddRange(temp_string); // add disk names to combo-box items
-            this.comboBox1.Text = (string)this.comboBox1.Items[0]; // hope there's at least one drive. Also default disk value
-            this.comboBox1.FormattingEnabled = false;
-            this.label1.Text = "Выберите диск:";
+
         }
 
-
-
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // Copy button
         {
-            // get information about 'disk-name' (=== combo-box.Text)
-            DriveInfo drive = this.disk_data.get_disk_data(this.comboBox1.Text);
-            // display the information in the text-box
-            this.textBox1.Text = String.Format("\r\nTotal available space: {0, 15} bytes\r\nTotal size of drive: {1, 15} bytes", drive.TotalFreeSpace, drive.TotalSize);
+            try
+            {
+                string file_path_src = this.textBox1.Text;
+                string file_name = Path.GetFileName(file_path_src);
+                string file_path_dest = this.textBox2.Text + "\\" + file_name;
+                File.Copy(file_path_src, file_path_dest, true);
+            }
+            catch (Exception ex) // purely for debugging purposes
+            {
+                this.stoopid();
+            }
+        }
+        private void button2_Click(object sender, EventArgs e) // Move button
+        {
+            try
+            {
+                string file_path_src = this.textBox1.Text;
+                string file_name = Path.GetFileName(file_path_src);
+                string file_path_dest = this.textBox2.Text + "\\" + file_name;
+                File.Copy(file_path_src, file_path_dest, true);
+                File.Delete(file_path_src);
+            }
+            catch (Exception ex) // purely for debugging purposes
+            {
+                this.stoopid();
+            }
+        }
+        private void button3_Click(object sender, EventArgs e) // Del button
+        {
+            try
+            {
+                File.Delete(this.textBox1.Text);
+            }
+            catch
+            {
+                this.stoopid();
+            }
+        }
+        private void button4_Click(object sender, EventArgs e) // Scr button
+        {
+            OpenFileDialog file_dialog = new OpenFileDialog();
+            
+            file_dialog.InitialDirectory = this.textBox1.Text;
+            file_dialog.RestoreDirectory = true;
+            
+            if (file_dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.textBox1.Text = file_dialog.FileName;
+            }
+        }
+        private void button5_Click(object sender, EventArgs e) // Dest button
+        {
+            FolderBrowserDialog folder_dialog = new FolderBrowserDialog();
+            
+//            folder_dialog.InitialDirectory = this.textBox1.Text;
+//            folder_dialog.RestoreDirectory = true;
+            
+            if (folder_dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.textBox2.Text = folder_dialog.SelectedPath;
+            }
+        }
+        private void stoopid()
+        {
+            string message = "Why are u booing me??";
+            string caption = "YOU!!! STOOPID!";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            MessageBox.Show(message, caption, buttons);
         }
     }
 }

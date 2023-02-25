@@ -1,5 +1,8 @@
-﻿// TODO: display all disks and their diskspace; + read RAM data
-// TODO: copy, move, delete chosen files
+﻿// TODO: copies files into nowhere?
+//       then can't move same files there.
+//       Probably didn't close the file or smth.
+// TODO: test Delete functionality
+// TODO: set temporary default textbox values for faster access
 
 using System;
 using System.IO;
@@ -15,14 +18,9 @@ namespace os_lab_2
         [STAThread]
         static void Main()
         {
-//            Form my_form = new Form1();
-
-            // whhat?
-//            /*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-//            */
         }
     }
 }
