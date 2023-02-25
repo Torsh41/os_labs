@@ -184,6 +184,7 @@ namespace os_lab_2
             this.button_rename.Size = new System.Drawing.Size(75, 23);
             this.button_rename.TabIndex = 13;
             this.button_rename.Text = "rename";
+            this.button_rename.Click += new System.EventHandler(this.button_rename_click);
             // 
             // textBox3
             // 

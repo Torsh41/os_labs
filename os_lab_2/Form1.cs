@@ -110,6 +110,35 @@ namespace os_lab_2
                 this.stoopid();
             }
         }
+        private void button_rename_click(object sender, EventArgs e) // Rename button
+        {
+            try
+            {
+                string file_path_src = this.textBox1.Text;
+                if (is_file(file_path_src))
+                {
+                    string dir_name = Path.GetDirectoryName(file_path_src);
+                    string new_file_name = Path.GetFileName(this.textBox3.Text);
+                    string file_path_dest = Path.Combine(dir_name, new_file_name);
+                    File.Copy(file_path_src, file_path_dest, true);
+                    File.Delete(file_path_src);
+                }
+                else
+                {
+                    string dir_name = Path.GetDirectoryName(file_path_src);
+                    string new_dir_name = this.textBox3.Text;
+                    string new_dir_dest = Path.Combine(dir_name, new_dir_name);
+                    DirectoryInfo source = new DirectoryInfo(file_path_src);
+                    DirectoryInfo destination = new DirectoryInfo(new_dir_dest);
+                    copy_dir_recursive(source, destination);
+                    Directory.Delete(file_path_src, true); // delete a directory & it's contents
+                }
+            }
+            catch (Exception ex) // purely for debugging purposes
+            {
+                this.stoopid();
+            }
+        }
         private void button_file_1_click(object sender, EventArgs e) // Scr button
         {
             OpenFileDialog file_dialog = new OpenFileDialog();
@@ -148,22 +177,6 @@ namespace os_lab_2
             if (folder_dialog.ShowDialog() == DialogResult.OK)
             {
                 this.textBox2.Text = folder_dialog.SelectedPath;
-            }
-        }
-        private void button_rename_click(object sender, EventArgs e) // Rename button
-        {
-            try
-            {
-                string file_path_src = this.textBox1.Text;
-                string file_name = Path.GetDirectoryName(file_path_src);
-                string new_file_name = "";
-                string file_path_dest = Path.Combine(this.textBox2.Text, file_name);
-                File.Copy(file_path_src, file_path_dest, true);
-                File.Delete(file_path_src);
-            }
-            catch (Exception ex) // purely for debugging purposes
-            {
-                this.stoopid();
             }
         }
         private void button_exchange_click(object sender, EventArgs e) // switch paths
