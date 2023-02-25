@@ -117,4 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>C:\Users\nick\Pictures\Saved Pictures\water-nature-bird-wing-stone-summer-pond-wildlife-reflection-beak-fauna-poultry-drake-one-duck-vertebrate-beautiful-waterfowl-water-bird-mallard-canard-mergus-ducks-geese-and-swans-seaduck-614686.jpg</value>
+  </data>
+  <data name="textBox4.Text" xml:space="preserve">
+    <value>Инструкция по применению:
+	Перед вами есть 3 строки ввода:
+		- Левая: для указания исходного файла/папки;
+		- Правая: для указания директории назначения файла/папки;
+		- Нижняя: специальная строка для переименования файла/папки;
+	Кнопки 'Файл' и 'Папка' используются для выбора пути до Файла или Директории соответственно.
+	Кнопки 'copy' и 'move' берут путь до Файла/Папки из левой строки ввода и копируют/перемещают в путь указанный в правой строке ввода.
+	Кнопка 'rename' берет путь до Файла/Папки указанной в левой строке ввода и переименует Файл/Папку на имя, указанное в нижней строке ввода.
+	Кнопка 'delete' берет путь до Файла/Папки указанной в левой строке ввода и удаляет содержимое.
+	Кнопка с символом '⇄' меняет местами значения в левой и правой строках ввода и меняет их местами.
+	Как-то так, получилось...</value>
+  </data>
 </root>
